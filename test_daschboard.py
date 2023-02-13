@@ -53,10 +53,12 @@ def get_predict_of_id():
     if st.button('Get Score'):
     # data to send in the request body
         id_client = {"SK_ID_CURR": client_id}
+        
+        st.write('bonjour')
 
     # send the POST request
         response = requests.post("http://assali.pythonanywhere.com/", json=id_client)
-        st.write(response)
+        
 
      # get the response data as a python object
        
