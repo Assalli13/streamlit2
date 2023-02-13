@@ -58,6 +58,8 @@ def get_predict_of_id():
 
     # send the POST request
         response = requests.post("http://assali.pythonanywhere.com/", json=id_client)
+        st.write('bonjour')
+        st.write(response)
         
 
      # get the response data as a python object
