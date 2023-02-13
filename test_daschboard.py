@@ -60,10 +60,11 @@ def get_predict_of_id():
      # get the response data as a python object
         try:
             response_data = json.loads(response.text)
+            response_data = response.json()
         except json.decoder.JSONDecodeError as e:
             print("Error decoding JSON response:", response.text)
         #response_data = json.loads(response.text)
-        response_data = response.json()
+        
 
     return client_id, response_data
 
