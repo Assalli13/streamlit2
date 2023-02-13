@@ -58,7 +58,11 @@ def get_predict_of_id():
         response = requests.post("http://assali.pythonanywhere.com/", json=id_client)
 
      # get the response data as a python object
-        response_data = json.loads(response.text)
+        try:
+            response_data = json.loads(response.text)
+        except json.decoder.JSONDecodeError as e:
+            print("Error decoding JSON response:", response.text)
+        #response_data = json.loads(response.text)
         response_data = response.json()
 
     return client_id, response_data
