@@ -57,7 +57,7 @@ def get_predict_of_id():
         st.write('bonjour')
 
     # send the POST request
-        response = requests.get("http://assali.pythonanywhere.com/", json=id_client)
+        response = requests.get("https://assalli13-flask-test-api-ndlz8b.streamlit.app/", json=id_client)
         st.write('bonjour')
         
         
