@@ -184,3 +184,5 @@ def hist_graph ():
     st.pyplot(fig)
 hist_graph()
         
+    
+    
