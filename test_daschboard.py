@@ -55,7 +55,7 @@ def get_predict_of_id():
         id_client = {"SK_ID_CURR": client_id}
 
     # send the POST request
-        response = requests.get("http://0.0.0.0:8080", json=id_client)
+        response = requests.get("https://flask-1.assalli13.repl.co/", json=id_client)
         
         
 
