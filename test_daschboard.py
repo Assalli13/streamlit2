@@ -53,12 +53,9 @@ def get_predict_of_id():
     if st.button('Get Score'):
     # data to send in the request body
         id_client = {"SK_ID_CURR": client_id}
-        
-        st.write('bonjour')
 
     # send the POST request
         response = requests.get("https://assalli13-flask-test-api-ndlz8b.streamlit.app/", json=id_client)
-        st.write('bonjour')
         
         
 
