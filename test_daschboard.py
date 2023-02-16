@@ -55,12 +55,12 @@ def get_predict_of_id():
         id_client = {"SK_ID_CURR": client_id}
 
     # send the POST request
-        response = requests.post("https://flask-1.assalli13.repl.co/", json=id_client)
+        response = requests.post("http://localhost:3000/predictByClientId", json=id_client)
 
      # get the response data as a python object
         response_data = json.loads(response.text)
         response_data = response.json()
-        st.write(response_data)
+
     return client_id, response_data
 
 
@@ -71,14 +71,7 @@ def gauge_chart(thres):
     st.write(client_data)
     if not client_data.empty:
         #percent_sup_seuil = 100 * np.sum(response_data['prediction_proba']> thres) / client_data.shape[0]
-        #st.write(response_data['prediction_proba'])
-        response_data = {"prediction_proba": 0.8} # exemple d'un dictionnaire similaire
-
-        try:
-            prediction_proba = response_data['prediction_proba']
-        except KeyError:
-            st.error("La clé 'prediction_proba' n'a pas été trouvée dans le dictionnaire.")
-        return
+        st.write(response_data['prediction_proba'])
         percent_sup_seuil = 100*response_data['prediction_proba']
         if percent_sup_seuil<=100*thres:
             st.write('Demande peut etre acceptée')
@@ -182,5 +175,3 @@ def hist_graph ():
     st.pyplot(fig)
 hist_graph()
         
-    
-    
