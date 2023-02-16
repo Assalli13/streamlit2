@@ -39,9 +39,9 @@ data['TARGET'] = list(prediction[:, 1])
 if(st.button('Predict')):
 
     st.write(data)
-    client = data[data['SK_ID_CURR']==1]
+    #client = data[data['SK_ID_CURR']==1]
     # Afficher les données filtrées
-    st.write(client)
+    #st.write(client)
         # Afficher la valeur de la colonne 'TARGET' pour le client sélectionné
     score_client = client['TARGET']
     #st.write(score_client)
