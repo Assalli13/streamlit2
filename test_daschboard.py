@@ -30,9 +30,9 @@ prediction = model.predict_proba(data.drop('Unnamed: 0', axis =1))
 y_pred_test = (prediction > 0.1)
 y_pred_test = np.array(y_pred_test > 0) * 1
 #st.write(data)
-st.write(pd.DataFrame({
-    'Id': data['SK_ID_CURR'],
-    'pred': list(y_pred_test),
+#st.write(pd.DataFrame({
+    #'Id': data['SK_ID_CURR'],
+    #'pred': list(y_pred_test),
 }))
 data['TARGET'] = list(prediction[:, 1])
 
