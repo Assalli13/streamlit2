@@ -44,7 +44,7 @@ if(st.button('Predict')):
     st.write(client)
         # Afficher la valeur de la colonne 'TARGET' pour le client sélectionné
     score_client = client['TARGET']
-    st.write(score_client)
+    #st.write(score_client)
 
 def get_predict_of_id():
 #Get the client ID from the user
