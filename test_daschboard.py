@@ -60,7 +60,7 @@ def get_predict_of_id():
      # get the response data as a python object
         response_data = json.loads(response.text)
         response_data = response.json()
-
+        st.write(response_data)
     return client_id, response_data
 
 
