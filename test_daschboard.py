@@ -36,7 +36,7 @@ y_pred_test = np.array(y_pred_test > 0) * 1
 #}))
 data['TARGET'] = list(prediction[:, 1])
 
-if(st.button('Predict')):
+if(st.button('Get info')):
 
     st.write(data)
     client = data[data['SK_ID_CURR']==1]
