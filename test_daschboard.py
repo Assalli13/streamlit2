@@ -55,7 +55,8 @@ def get_predict_of_id():
         id_client = {"SK_ID_CURR": client_id}
 
     # send the POST request
-        response = requests.post("http://assali.pythonanywhere.com/predictByClientId", json=id_client)
+        #response = requests.post("http://assali.pythonanywhere.com/predictByClientId", json=id_client)
+        response = requests.post("http://assali.pythonanywhere.com", json=id_client)
 
      # get the response data as a python object
         response_data = json.loads(response.text)
