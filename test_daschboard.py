@@ -55,17 +55,11 @@ def get_predict_of_id():
         id_client = {"SK_ID_CURR": client_id}
 
     # send the POST request
-        response = requests.get("https://flask-1.assalli13.repl.co/", json=id_client)
-        
-        
+        response = requests.post("https://flask-1.assalli13.repl.co/", json=id_client)
 
      # get the response data as a python object
-       
-       
         response_data = json.loads(response.text)
         response_data = response.json()
-        st.write(response_data)
-        
 
     return client_id, response_data
 
