@@ -21,7 +21,7 @@ data = pd.read_csv("X_valid_sample_sm")
 data = data.reset_index()
 data['SK_ID_CURR'] = data['index']
 data = data.drop('index', axis = 1)
-init = st.markdown("*Initialisation de l'application en cours...*")
+init = st.markdown("Réalisé par: Mohamed Assali")
 liste_id = data['SK_ID_CURR'].tolist()
 
 
