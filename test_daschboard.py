@@ -71,7 +71,14 @@ def gauge_chart(thres):
     st.write(client_data)
     if not client_data.empty:
         #percent_sup_seuil = 100 * np.sum(response_data['prediction_proba']> thres) / client_data.shape[0]
-        st.write(response_data['prediction_proba'])
+        #st.write(response_data['prediction_proba'])
+        response_data = {"prediction_proba": 0.8} # exemple d'un dictionnaire similaire
+
+        try:
+            prediction_proba = response_data['prediction_proba']
+        except KeyError:
+            st.error("La clé 'prediction_proba' n'a pas été trouvée dans le dictionnaire.")
+        return
         percent_sup_seuil = 100*response_data['prediction_proba']
         if percent_sup_seuil<=100*thres:
             st.write('Demande peut etre acceptée')
