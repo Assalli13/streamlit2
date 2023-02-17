@@ -238,11 +238,13 @@ def affiche_bivarié():
         st.write(f"Vous avez sélectionné la variable : {var}")
     
     # Afficher l'analyse bivariée de la variable sélectionnée par rapport à TARGET
-        affiche = bivariate_analysis(data, str(var), 'TARGET')
+       
 #else:
     #st.write("Veuillez sélectionner une variable à partir de la liste déroulante.")
-    return affiche
+    return var
 affiche_bivarié()
+
+
 #st.header("Analyse bivariée")
 #def var(data):
    # if(st.button('select_var1')):
