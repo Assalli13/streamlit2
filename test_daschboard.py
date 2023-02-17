@@ -17,6 +17,7 @@ file1.close()
 
 
 data = pd.read_csv("X_valid_sample_sm")
+data_test = pd.read_csv("X_valid_sample_sm")
 #data['SK_ID_CURR'] = data['SK_ID_CURR'].astype(int)
 data = data.reset_index()
 data['SK_ID_CURR'] = data['index']
