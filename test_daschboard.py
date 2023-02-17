@@ -144,7 +144,7 @@ def gauge_chart(thres):
             feature_importancess = json.loads(response_data["feature_importances"])
             feature_importancess_df = pd.DataFrame(feature_importancess)
             #st.write(feature_importancess_df)
-            top_4_features = feature_importancess_df.sort_values(by='importance', ascending=False)[:4]
+            top_4_features = feature_importancess_df.sort_values(by='importance', ascending=False)[:100]
             #st.bar_chart(top_4_features, x=top_4_features['feature'], y=top_4_features['importance'])
             fig1, ax = plt.subplots(figsize=(10, 4))
             colors = ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728']
