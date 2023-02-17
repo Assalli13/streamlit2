@@ -228,7 +228,7 @@ st.header("Analyse bivariée")
 #var3 = 'AMT_CREDIT'
 
 st.header("Analyse bivariée")
-def affiche_bivarié()
+def affiche_bivarié():
 # Demander à l'utilisateur de sélectionner une variable à partir d'une liste déroulante
     var = st.selectbox('Sélectionnez une variable', data.columns)
 
