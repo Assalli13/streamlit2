@@ -144,7 +144,7 @@ def gauge_chart(thres):
             feature_importancess = json.loads(response_data["feature_importances"])
             feature_importancess_df = pd.DataFrame(feature_importancess)
             #st.write(feature_importancess_df)
-            top_4_features = feature_importancess_df.sort_values(by='importance', ascending=False)[:100]
+            top_4_features = feature_importancess_df.sort_values(by='importance', ascending=False)[:4]
             #st.bar_chart(top_4_features, x=top_4_features['feature'], y=top_4_features['importance'])
             fig1, ax = plt.subplots(figsize=(10, 4))
             colors = ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728']
@@ -169,9 +169,9 @@ def show_overview():
     st.title("Risque")
     risque_threshold = st.slider(label = 'Seuil de risque', min_value = 0.0,
                     max_value = 1.0 ,
-                     value = 0.5,
+                     value = 0.15,
                      step = 0.1)
-    st.write(0.5)
+    st.write(0.15)
 show_overview()
 st.write(data)
  
@@ -191,7 +191,7 @@ def gauge_chart(thres):
             ],
             'threshold' : {'line': {'color': "black", 'width': 2}, 'thickness': 0.75, 'value': thres}}))
     st.plotly_chart(fig) 
-gauge_chart(thres = 0.1)
+gauge_chart(thres = 0.15)
 
 def hist_graph ():
     bins = st.slider("Number of bins",5,50,10)
@@ -241,6 +241,7 @@ def bivariate_analysis(data):
     st.plotly_chart(fig1)
     st.plotly_chart(fig2)
     st.plotly_chart(fig3)
+    return 'var1'
 bivariate_analysis(data_test)
 
 
