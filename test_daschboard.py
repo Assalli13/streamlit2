@@ -220,14 +220,13 @@ def bivariate_analysis(data, var1, var2, var3):
     
     # Affichage du graphique avec Streamlit
     st.pyplot(fig)
-bivariate_analysis(data_test, 'EXT_SOURCE_1', 'EXT_SOURCE_2', 'AMT_CREDIT')
+#bivariate_analysis(data_test, 'EXT_SOURCE_1', 'EXT_SOURCE_2', 'AMT_CREDIT')
 
 # Exemple d'utilisation avec Streamlit
 
-# Affichage de l'analyse bivariée avec Streamlit
-   # st.title("Analyse bivariée de la variable TARGET par rapport à trois autres variables")
-   # var1 = st.selectbox("Première variable :", data.columns)
-   # var2 = st.selectbox("Deuxième variable :", data.columns)
-   # var3 = st.selectbox("Troisième variable :", data.columns)
-#if st.button("Afficher l'analyse bivariée"):
+st.header("Analyse bivariée")
+var1 = st.selectbox('EXT_SOURCE_1', data_test.columns)
+var2 = st.selectbox('EXT_SOURCE_2', data_test.columns)
+var3 = st.selectbox('AMT_CREDIT', data_test.columns)
+bivariate_analysis(data_test, var1, var2, var3)
 
