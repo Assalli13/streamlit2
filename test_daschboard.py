@@ -224,7 +224,16 @@ def bivariate_analysis(data, var1, var2, var3):
     # Affichage du graphique avec Streamlit
    # st.pyplot(fig)
 #bivariate_analysis(data_test, 'EXT_SOURCE_1', 'EXT_SOURCE_2', 'AMT_CREDIT')
-
+def bivariate_analysis_boxplt(data, var1, var2, var3):
+    # Create a box plot for each variable, grouped by the TARGET variable
+    fig1 = px.box(data, x='TARGET', y=var1, title=f"{var1} vs. TARGET")
+    fig2 = px.box(data, x='TARGET', y=var2, title=f"{var2} vs. TARGET")
+    fig3 = px.box(data, x='TARGET', y=var3, title=f"{var3} vs. TARGET")
+    
+    # Show the box plots in Streamlit
+    st.plotly_chart(fig1)
+    st.plotly_chart(fig2)
+    st.plotly_chart(fig3)
 # Exemple d'utilisation avec Streamlit
 
 st.header("Analyse bivariée")
@@ -232,6 +241,7 @@ var1 = 'EXT_SOURCE_1'
 var2 = 'EXT_SOURCE_2'
 var3 = 'AMT_CREDIT'
 bivariate_analysis(data_test, var1, var2, var3)
+bivariate_analysis_boxplt(data_test, var1, var2, var3)
 #var1 = st.selectbox('EXT_SOURCE_1', data_test.columns)
 #var2 = st.selectbox('EXT_SOURCE_2', data_test.columns)
 #var3 = st.selectbox('AMT_CREDIT', data_test.columns)
