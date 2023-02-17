@@ -163,7 +163,7 @@ gauge_chart(thres = 0.1)
 
 def hist_graph ():
     bins = st.slider("Number of bins",5,50,10)
-    hist_values, bin_edges = np.histogram(data['DEXT_SOURCE_1'], bins=bins)
+    hist_values, bin_edges = np.histogram(data['EXT_SOURCE_1'], bins=bins)
     bin_edges = bin_edges[:-1] # to match the number of values
     hist_df = pd.DataFrame({"bin_edges": bin_edges,"hist_values": hist_values})
     st.bar_chart(hist_df)
