@@ -222,15 +222,15 @@ hist_graph()
     
     #return
 
-def bivariate_analysis(data):
+def bivariate_analysis(data, var1, var2, var3):
     # Afficher un bouton pour sélectionner la première variable
-    var1 = st.selectbox('Sélectionnez la première variable', data.columns)
+    #var1 = st.selectbox('Sélectionnez la première variable', data.columns)
 
     # Afficher un bouton pour sélectionner la deuxième variable
-    var2 = st.selectbox('Sélectionnez la deuxième variable', data.columns)
+    #var2 = st.selectbox('Sélectionnez la deuxième variable', data.columns)
 
     # Afficher un bouton pour sélectionner la troisième variable
-    var3 = st.selectbox('Sélectionnez la troisième variable', data.columns)
+    #var3 = st.selectbox('Sélectionnez la troisième variable', data.columns)
 
     # Création de trois graphiques de dispersion entre la variable TARGET et les trois autres variables
     fig1 = px.scatter(data, x=var1, y='TARGET', title=f"{var1} vs. TARGET")
@@ -241,8 +241,8 @@ def bivariate_analysis(data):
     st.plotly_chart(fig1)
     st.plotly_chart(fig2)
     st.plotly_chart(fig3)
-    return 'var1'
-bivariate_analysis(data_test)
+    return 
+bivariate_analysis(data_test, 'EXT_SOURCE_1', 'EXT_SOURCE_2', 'AMT_CREDIT')
 
 
 
