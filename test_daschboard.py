@@ -222,7 +222,7 @@ def bivariate_analysis(data, var1, var2, var3):
     st.plotly_chart(fig2)
     st.plotly_chart(fig3)
     # Affichage du graphique avec Streamlit
-    st.pyplot(fig)
+   # st.pyplot(fig)
 #bivariate_analysis(data_test, 'EXT_SOURCE_1', 'EXT_SOURCE_2', 'AMT_CREDIT')
 
 # Exemple d'utilisation avec Streamlit
