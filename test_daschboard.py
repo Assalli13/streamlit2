@@ -226,7 +226,7 @@ def bivariate_analysis(data, var1):
 #var1 = 'EXT_SOURCE_1'
 #var2 = 'EXT_SOURCE_2'
 #var3 = 'AMT_CREDIT'
-
+@st.cache
 st.header("Analyse bivariée")
 def affiche_bivarié():
 # Demander à l'utilisateur de sélectionner une variable à partir d'une liste déroulante
