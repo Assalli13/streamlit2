@@ -228,7 +228,7 @@ def bivariate_analysis(data, var1):
 #var3 = 'AMT_CREDIT'
 
 st.header("Analyse bivariée")
-@st.cache
+#@st.cache
 def affiche_bivarié():
 # Demander à l'utilisateur de sélectionner une variable à partir d'une liste déroulante
     var = st.selectbox('Sélectionnez une variable', data_test.columns)
