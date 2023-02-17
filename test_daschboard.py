@@ -209,60 +209,28 @@ def hist_graph ():
 hist_graph()
 
 
-def bivariate_analysis(data, var1):
+#def bivariate_analysis(data, var1):
     # Création de trois graphiques de dispersion entre la variable TARGET et les trois autres variables
-    fig1 = px.scatter(data, x=var1, y='TARGET', title=f"{var1} vs. TARGET")
-    fig2 = px.scatter(data, x=var2, y='TARGET', title=f"{var2} vs. TARGET")
-    fig3 = px.scatter(data, x=var3, y='TARGET', title=f"{var3} vs. TARGET")
+    #fig1 = px.scatter(data, x=var1, y='TARGET', title=f"{var1} vs. TARGET")
+   # fig2 = px.scatter(data, x=var2, y='TARGET', title=f"{var2} vs. TARGET")
+    #fig3 = px.scatter(data, x=var3, y='TARGET', title=f"{var3} vs. TARGET")
     
     # Affichage des graphiques avec Streamlit
-    st.plotly_chart(fig1)
-    st.plotly_chart(fig2)
-    st.plotly_chart(fig3)
+    #st.plotly_chart(fig1)
+    #st.plotly_chart(fig2)
+   # st.plotly_chart(fig3)
     
-    return
-
-#st.header("Analyse bivariée")
-#var1 = 'EXT_SOURCE_1'
-#var2 = 'EXT_SOURCE_2'
-#var3 = 'AMT_CREDIT'
-
-st.header("Analyse bivariée")
-#@st.cache
-#def affiche_bivarié():
-# Demander à l'utilisateur de sélectionner une variable à partir d'une liste déroulante
-  #  var = st.selectbox('Sélectionnez une variable', data_test.columns)
-   # st.hist(data_test[var])
-#affiche_bivarié()
-
-
-#st.header("Analyse bivariée")
-#def var(data):
-   # if(st.button('select_var1')):
-      #  var = st.text_input('var1')
-    #if(st.button('select_var2')):
-       # var2 = st.text_input('var2')
-   # if(st.button('select_var3')):
-       # var3 = st.text_input('var3')
-        #st.write(var3)
-    #return var
-#var1 = var(data)
-#var2 = var(data)
-#var3 = var(data)
-#if(st.button('select_var')):
-#  # var1, var2, var3 = var(data_test)
-   #bivariate_analysis(data, var1, var2, var3)
-#st.write('les variables sélectionner sont :' , var1, var2, var3)
-#if(st.button(' bivariate_analysis')):
-   # bivariate_analysis(data_test, var1, var2, var3)
-#bivariate_analysis_barplot(data_test, var1, var2, var3)
-#
+    #return
 
 def bivariate_analysis(data):
-    # Let the user select three variables to plot
-    var1 = st.selectbox('Select the first variable to plot', data.columns)
-    var2 = st.selectbox('Select the second variable to plot', data.columns)
-    var3 = st.selectbox('Select the third variable to plot', data.columns)
+    # Afficher un bouton pour sélectionner la première variable
+    var1 = st.selectbox('Sélectionnez la première variable', data.columns)
+
+    # Afficher un bouton pour sélectionner la deuxième variable
+    var2 = st.selectbox('Sélectionnez la deuxième variable', data.columns)
+
+    # Afficher un bouton pour sélectionner la troisième variable
+    var3 = st.selectbox('Sélectionnez la troisième variable', data.columns)
 
     # Création de trois graphiques de dispersion entre la variable TARGET et les trois autres variables
     fig1 = px.scatter(data, x=var1, y='TARGET', title=f"{var1} vs. TARGET")
