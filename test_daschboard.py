@@ -231,8 +231,11 @@ st.header("Analyse bivariée")
 st.header("Analyse bivariée")
 def var(data):
     var1 = st.selectbox('var1', data.columns)
+    st.write(var1)
     var2 = st.selectbox('var2', data.columns)
+    st.write(var2)
     var3 = st.selectbox('var3', data.columns)
+    st.write(var3)
     return var1, var2, var3
 var1, var2, var3 = var(data_test)
 #st.write('les variables sélectionner sont :' , var1, var2, var3)
