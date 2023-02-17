@@ -229,7 +229,7 @@ st.header("Analyse bivariée")
 
 
 st.header("Analyse bivariée")
-def var(data)
+def var(data):
     var1 = st.selectbox('var1', data.columns)
     var2 = st.selectbox('var2', data.columns)
     var3 = st.selectbox('var3', data.columns)
