@@ -219,6 +219,8 @@ def bivariate_analysis(data, var1, var2, var3):
     st.plotly_chart(fig1)
     st.plotly_chart(fig2)
     st.plotly_chart(fig3)
+    return
+
     #var1 = st.selectbox('EXT_SOURCE_1', data_test.columns)
     #var2 = st.selectbox('EXT_SOURCE_2', data_test.columns)
     #var3 = st.selectbox('AMT_CREDIT', data_test.columns)
