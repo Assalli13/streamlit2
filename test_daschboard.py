@@ -226,9 +226,9 @@ def bivariate_analysis(data, var1, var2, var3):
 #bivariate_analysis(data_test, 'EXT_SOURCE_1', 'EXT_SOURCE_2', 'AMT_CREDIT')
 def bivariate_analysis_boxplt(data, var1, var2, var3):
     # Create a box plot for each variable, grouped by the TARGET variable
-    fig1 = px.pairplot(data, x='TARGET', y=var1, title=f"{var1} vs. TARGET")
-    fig2 = px.pairplot(data, x='TARGET', y=var2, title=f"{var2} vs. TARGET")
-    fig3 = px.pairplot(data, x='TARGET', y=var3, title=f"{var3} vs. TARGET")
+    fig1 = px.scatter_matrix(data, x='TARGET', y=var1, title=f"{var1} vs. TARGET")
+    fig2 = px.scatter_matrix(data, x='TARGET', y=var2, title=f"{var2} vs. TARGET")
+    fig3 = px.scatter_matrix(data, x='TARGET', y=var3, title=f"{var3} vs. TARGET")
     
     # Show the box plots in Streamlit
     st.plotly_chart(fig1)
