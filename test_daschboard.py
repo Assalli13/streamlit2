@@ -167,10 +167,10 @@ def hist_graph ():
     bin_edges = bin_edges[:-1] # to match the number of values
     hist_df = pd.DataFrame({"bin_edges": bin_edges,"hist_values": hist_values})
     st.bar_chart(hist_df)
-    df = pd.DataFrame(data[:200],columns = ['DAYS_BIRTH','AMT_CREDIT'])
+    df = pd.DataFrame(data[:200],columns = ['EXT_SOURCE_1','AMT_CREDIT'])
     fig, ax = plt.subplots(1, 2)
     df['DAYS_BIRTH'].hist(ax=ax[0],bins=bins)
-    ax[0].set_title('DAYS_BIRTH')
+    ax[0].set_title('EXT_SOURCE_1')
     df['AMT_CREDIT'].hist(ax=ax[1],bins=bins)
     ax[1].set_title('AMT_CREDIT')
     st.pyplot(fig)
