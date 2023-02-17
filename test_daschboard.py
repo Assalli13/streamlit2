@@ -225,8 +225,12 @@ def bivariate_analysis(data, var1, var2, var3):
 # Exemple d'utilisation avec Streamlit
 
 st.header("Analyse bivariée")
-var1 = st.selectbox('EXT_SOURCE_1', data_test.columns)
-var2 = st.selectbox('EXT_SOURCE_2', data_test.columns)
-var3 = st.selectbox('AMT_CREDIT', data_test.columns)
+var1 = 'EXT_SOURCE_1'
+var2 = 'EXT_SOURCE_2'
+var3 = 'AMT_CREDIT'
+
+#var1 = st.selectbox('EXT_SOURCE_1', data_test.columns)
+#var2 = st.selectbox('EXT_SOURCE_2', data_test.columns)
+#var3 = st.selectbox('AMT_CREDIT', data_test.columns)
 bivariate_analysis(data_test, var1, var2, var3)
 
