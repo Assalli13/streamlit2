@@ -229,10 +229,13 @@ st.header("Analyse bivariée")
 
 
 st.header("Analyse bivariée")
-var1 = st.selectbox('var1', data_test.columns)
-var2 = st.selectbox('var2', data_test.columns)
-var3 = st.selectbox('var3', data_test.columns)
-st.write('les variables sélectionner sont :' , var1, var2, var3)
+def var(data)
+    var1 = st.selectbox('var1', data.columns)
+    var2 = st.selectbox('var2', data.columns)
+    var3 = st.selectbox('var3', data.columns)
+    return var1, var2, var3
+var1, var2, var3 = var(data_test)
+#st.write('les variables sélectionner sont :' , var1, var2, var3)
 if(st.button(' bivariate_analysis')):
     bivariate_analysis(data_test, var1, var2, var3)
 #bivariate_analysis_barplot(data_test, var1, var2, var3)
