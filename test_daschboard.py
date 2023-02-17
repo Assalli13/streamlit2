@@ -227,11 +227,21 @@ st.header("Analyse bivariée")
 #var2 = 'EXT_SOURCE_2'
 #var3 = 'AMT_CREDIT'
 
-var1 = st.selectbox('var1', data.columns)
-if var1:
-    st.write(var1)
-if(st.button('select_var1')):
-    bivariate_analysis(data, var1)
+st.header("Analyse bivariée")
+def affiche_bivarié()
+# Demander à l'utilisateur de sélectionner une variable à partir d'une liste déroulante
+    var = st.selectbox('Sélectionnez une variable', data.columns)
+
+# Vérifier si l'utilisateur a sélectionné une variable
+    if var:
+    # Afficher le nom de la variable sélectionnée
+        st.write(f"Vous avez sélectionné la variable : {var}")
+    
+    # Afficher l'analyse bivariée de la variable sélectionnée par rapport à TARGET
+        affiche = bivariate_analysis(data, var, 'TARGET')
+#else:
+    #st.write("Veuillez sélectionner une variable à partir de la liste déroulante.")
+    return affiche
 #st.header("Analyse bivariée")
 #def var(data):
    # if(st.button('select_var1')):
