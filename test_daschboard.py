@@ -236,15 +236,14 @@ def var(data):
     var2 = st.selectbox('var2', data.columns)
     #st.write(var2)
     var3 = st.selectbox('var3', data.columns)
-    
-    if(st.button('select_var')):
         st.write(var3)
     return var1, var2, var3
-var1, var2, var3 = var(data_test)
-if var1 and var2 and var3:
-    bivariate_analysis(data, var1, var2, var3)
-else:
-    st.write("Veuillez sélectionner une valeur pour chaque variable")
+ if(st.button('select_var')):
+    var1, var2, var3 = var(data_test)
+    if var1 and var2 and var3:
+        bivariate_analysis(data, var1, var2, var3)
+    else:
+        st.write("Veuillez sélectionner une valeur pour chaque variable")
 #st.write('les variables sélectionner sont :' , var1, var2, var3)
 #if(st.button(' bivariate_analysis')):
    # bivariate_analysis(data_test, var1, var2, var3)
