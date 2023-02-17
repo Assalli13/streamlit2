@@ -219,17 +219,18 @@ def bivariate_analysis(data, var1, var2, var3):
     st.plotly_chart(fig1)
     st.plotly_chart(fig2)
     st.plotly_chart(fig3)
-    var1 = st.selectbox('EXT_SOURCE_1', data_test.columns)
-    var2 = st.selectbox('EXT_SOURCE_2', data_test.columns)
-    var3 = st.selectbox('AMT_CREDIT', data_test.columns)
+    #var1 = st.selectbox('EXT_SOURCE_1', data_test.columns)
+    #var2 = st.selectbox('EXT_SOURCE_2', data_test.columns)
+    #var3 = st.selectbox('AMT_CREDIT', data_test.columns)
 st.header("Analyse bivariée")
 #var1 = 'EXT_SOURCE_1'
 #var2 = 'EXT_SOURCE_2'
 #var3 = 'AMT_CREDIT'
 
-#var1 = st.selectbox('EXT_SOURCE_1', data_test.columns)
-#var2 = st.selectbox('EXT_SOURCE_2', data_test.columns)
-#var3 = st.selectbox('AMT_CREDIT', data_test.columns)
+var1 = st.selectbox('var1', data_test.columns)
+var2 = st.selectbox('var2', data_test.columns)
+var3 = st.selectbox('var3', data_test.columns)
+st.header("Analyse bivariée")
 if(st.button(' bivariate_analysis')):
     bivariate_analysis(data_test, var1, var2, var3)
 #bivariate_analysis_barplot(data_test, var1, var2, var3)
