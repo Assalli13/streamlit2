@@ -85,7 +85,7 @@ def pie_chart(thres):
     )
     
     st.plotly_chart(fig)
- pie_chart(thres = 0.15)
+pie_chart(thres = 0.15)
 
 def get_predict_of_id():
 #Get the client ID from the user
