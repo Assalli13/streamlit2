@@ -29,8 +29,8 @@ liste_id = data['SK_ID_CURR'].tolist()
 #y_pred = model.predict(data_test.drop('Unnamed: 0', axis =1))
 prediction_test = model.predict_proba(data_test.drop('Unnamed: 0', axis =1))
 y_pred_data_test = (prediction_test > 0.1)
-y_pred_data_test = np.array(y_pred_test > 0) * 1
-data_test['TARGET'] = list(prediction[:, 1])
+y_pred_data_test = np.array(y_pred_data_test > 0) * 1
+data_test['TARGET'] = list(prediction_test[:, 1])
 #--------------------------------------------------------------------------------------------------------------------------------------------#
 y_pred = model.predict(data.drop('Unnamed: 0', axis =1))
 prediction = model.predict_proba(data.drop('Unnamed: 0', axis =1))
