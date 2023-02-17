@@ -197,4 +197,29 @@ def hist_graph ():
     ax[1].set_title('AMT_CREDIT')
     st.pyplot(fig)
 hist_graph()
-        
+
+def bivariate_analysis(data, var1, var2, var3):
+    # Création de trois graphiques de dispersion entre la variable TARGET et les trois autres variables
+    fig, (ax1, ax2, ax3) = plt.subplots(1, 3, figsize=(16, 6))
+    sns.scatterplot(x=var1, y='TARGET', data=data, ax=ax1)
+    sns.scatterplot(x=var2, y='TARGET', data=data, ax=ax2)
+    sns.scatterplot(x=var3, y='TARGET', data=data, ax=ax3)
+    
+    # Réglage des titres des graphiques
+    ax1.set_title(f"{var1} vs. TARGET")
+    ax2.set_title(f"{var2} vs. TARGET")
+    ax3.set_title(f"{var3} vs. TARGET")
+    
+    # Affichage du graphique avec Streamlit
+    st.pyplot(fig)
+bivariate_analysis(data, 'EXT_SOURCE_1', 'EXT_SOURCE_2', 'AMT_CREDIT')
+
+# Exemple d'utilisation avec Streamlit
+
+# Affichage de l'analyse bivariée avec Streamlit
+   # st.title("Analyse bivariée de la variable TARGET par rapport à trois autres variables")
+   # var1 = st.selectbox("Première variable :", data.columns)
+   # var2 = st.selectbox("Deuxième variable :", data.columns)
+   # var3 = st.selectbox("Troisième variable :", data.columns)
+#if st.button("Afficher l'analyse bivariée"):
+
