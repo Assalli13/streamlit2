@@ -222,7 +222,7 @@ def bivariate_analysis(data, var1):
     
     return
 
-st.header("Analyse bivariée")
+#st.header("Analyse bivariée")
 #var1 = 'EXT_SOURCE_1'
 #var2 = 'EXT_SOURCE_2'
 #var3 = 'AMT_CREDIT'
@@ -242,6 +242,7 @@ def affiche_bivarié():
 #else:
     #st.write("Veuillez sélectionner une variable à partir de la liste déroulante.")
     return affiche
+affiche_bivarié()
 #st.header("Analyse bivariée")
 #def var(data):
    # if(st.button('select_var1')):
