@@ -241,7 +241,7 @@ bivariate_analysis(data, var1)
     #return var
 #var1 = var(data)
 #var2 = var(data)
-@var3 = var(data)
+#var3 = var(data)
 #if(st.button('select_var')):
 #  # var1, var2, var3 = var(data_test)
    #bivariate_analysis(data, var1, var2, var3)
