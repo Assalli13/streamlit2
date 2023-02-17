@@ -208,8 +208,6 @@ def hist_graph ():
     st.pyplot(fig)
 hist_graph()
 
-import plotly.express as px
-import streamlit as st
 
 def bivariate_analysis(data, var1, var2, var3):
     # Création de trois graphiques de dispersion entre la variable TARGET et les trois autres variables
@@ -224,20 +222,21 @@ def bivariate_analysis(data, var1, var2, var3):
     # Affichage du graphique avec Streamlit
    # st.pyplot(fig)
 #bivariate_analysis(data_test, 'EXT_SOURCE_1', 'EXT_SOURCE_2', 'AMT_CREDIT')
-def bivariate_analysis(data, var1, var2, var3):
-    # Create a matrix of scatter plots for each variable, grouped by the TARGET variable
-    fig = px.scatter_matrix(data, dimensions=[var1, var2, var3], color='TARGET')
+def bivariate_analysis_pairplot(data, var1, var2, var3):
+    fig1 = px.scatter_matrix(data, dimensions=[var1], color='TARGET')
+    fig2 = px.scatter_matrix(data, dimensions=[var2], color='TARGET')
+    fig3 = px.scatter_matrix(data, dimensions=[var3], color='TARGET')
     
-    # Show the scatter plot matrix in Streamlit
-    st.plotly_chart(fig)
-bivariate_analysis(data_test, 'EXT_SOURCE_1', 'EXT_SOURCE_2', 'AMT_CREDIT')
+    st.plotly_chart(fig1)
+    st.plotly_chart(fig2)
+    st.plotly_chart(fig3)
 
 st.header("Analyse bivariée")
 var1 = 'EXT_SOURCE_1'
 var2 = 'EXT_SOURCE_2'
 var3 = 'AMT_CREDIT'
 bivariate_analysis(data_test, var1, var2, var3)
-bivariate_analysis_boxplt(data_test, var1, var2, var3)
+bivariate_analysis_pairplot(data_test, var1, var2, var3)
 #var1 = st.selectbox('EXT_SOURCE_1', data_test.columns)
 #var2 = st.selectbox('EXT_SOURCE_2', data_test.columns)
 #var3 = st.selectbox('AMT_CREDIT', data_test.columns)
