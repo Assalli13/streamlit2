@@ -230,12 +230,12 @@ st.header("Analyse bivariée")
 
 st.header("Analyse bivariée")
 def var(data):
-    
-    var1 = st.selectbox('var1', data.columns)
-    #st.write(var1)
-    var2 = st.selectbox('var2', data.columns)
-    #st.write(var2)
-    var3 = st.selectbox('var3', data.columns)
+    if(st.button('select_var1')):
+        var1 = st.text_input('var1')
+    if(st.button('select_var2')):
+        var2 = st.text_input('var2')
+    if(st.button('select_var3')):
+        var3 = st.text_input('var3')
         #st.write(var3)
     return var1, var2, var3
 
