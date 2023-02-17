@@ -231,14 +231,16 @@ st.header("Analyse bivariée")
 st.header("Analyse bivariée")
 def var(data):
     if(st.button('select_var1')):
-        var1 = st.text_input('var1')
-    if(st.button('select_var2')):
-        var2 = st.text_input('var2')
-    if(st.button('select_var3')):
-        var3 = st.text_input('var3')
+        var = st.text_input('var1')
+    #if(st.button('select_var2')):
+       # var2 = st.text_input('var2')
+   # if(st.button('select_var3')):
+       # var3 = st.text_input('var3')
         #st.write(var3)
-    return var1, var2, var3
-
+    return  if(st.button('select_var1')), var
+var1 = var(data)
+var2 = var(data)
+var3 = var(data)
 if(st.button('select_var')):
    var1, var2, var3 = var(data_test)
    bivariate_analysis(data, var1, var2, var3)
