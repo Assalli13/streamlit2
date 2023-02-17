@@ -38,7 +38,7 @@ data['TARGET'] = list(prediction[:, 1])
 
 if(st.button('Get info')):
 
-    st.write(data.head(20))
+    st.write(data.head(10))
     client = data[data['SK_ID_CURR']==1]
     # Afficher les données filtrées
     #st.write(client)
@@ -46,46 +46,27 @@ if(st.button('Get info')):
     score_client = client['TARGET']
     #st.write(score_client)
     
-def pie_chart(thres):
-    percent_sup_seuil = 100 * (data['TARGET'] > thres).sum() / data.shape[0]
-    percent_inf_seuil = 100 - percent_sup_seuil
-    d = {
-        'col1': [percent_sup_seuil, percent_inf_seuil],
-        'col2': ['% Non Solvable', '% Solvable']
-    }
-    df = pd.DataFrame(data=d)
-    fig = px.pie(df, values='col1', names='col2', title='Pourcentage de solvabilité des clients dans le dataset')
+    def pie_chart(thres):
+        percent_sup_seuil = 100 * (data['TARGET'] > thres).sum() / data.shape[0]
+        percent_inf_seuil = 100 - percent_sup_seuil
+        d = {
+         'col1': [percent_sup_seuil, percent_inf_seuil],
+        'col2': ['% Non Solvable', '% Solvable']}
+        df = pd.DataFrame(data=d)
+        fig = px.pie(df, values='col1', names='col2', title='Pourcentage de solvabilité des clients dans le dataset')
     
-    fig.update_traces(
-        textposition='inside',
-        texttemplate='%{percent:.2f}%',
-        marker=dict(
-            colors=['#ff7f0e', '#1f77b4'],
-            line=dict(color='#FFFFFF', width=2)
-        )
-    )
+        fig.update_traces(textposition='inside', texttemplate='%{percent:.2f}%',
+            marker=dict(
+                colors=['#ff7f0e', '#1f77b4'],
+                line=dict(color='#FFFFFF', width=2)))
 
-    fig.update_layout(
-        title={
-            'text': 'Répartition des clients selon la solvabilité',
-            'font': dict(size=24),
-            'x': 0.5,
-            'xanchor': 'center'
-        },
-        legend=dict(
-            orientation='h',
-            yanchor='bottom',
-            y=1.02,
-            xanchor='right',
-            x=1
-        ),
-        margin=dict(l=20, r=20, t=80, b=20),
-        paper_bgcolor='#F2F2F2',
-        font=dict(size=14, color='#4d4d4d')
-    )
+        fig.update_layout(
+            title={'text': 'Répartition des clients selon la solvabilité', 'font': dict(size=24),'x': 0.5,'xanchor': 'center'},
+            legend=dict(orientation='h',yanchor='bottom', y=1.02,
+            xanchor='right', x=1), margin=dict(l=20, r=20, t=80, b=20), paper_bgcolor='#F2F2F2', font=dict(size=14, color='#4d4d4d'))
     
-    st.plotly_chart(fig)
-pie_chart(thres = 0.15)
+        st.plotly_chart(fig)
+    pie_chart(thres = 0.15)
 
 def get_predict_of_id():
 #Get the client ID from the user
