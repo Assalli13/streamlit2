@@ -38,13 +38,23 @@ data['TARGET'] = list(prediction[:, 1])
 
 if(st.button('Get info')):
 
-    st.write(data)
+    st.write(data.head(20))
     client = data[data['SK_ID_CURR']==1]
     # Afficher les données filtrées
     #st.write(client)
         # Afficher la valeur de la colonne 'TARGET' pour le client sélectionné
     score_client = client['TARGET']
     #st.write(score_client)
+    
+def pie_chart(thres):
+    #st.write(100* (data['TARGET']>thres).sum()/data.shape[0])
+    percent_sup_seuil =100* (data['TARGET']>thres).sum()/data.shape[0]
+    percent_inf_seuil = 100-percent_sup_seuil
+    d = {'col1': [percent_sup_seuil,percent_inf_seuil], 'col2': ['% Non Solvable','% Solvable',]}
+    df = pd.DataFrame(data=d)
+    fig = px.pie(df,values='col1', names='col2', title=' Pourcentage de solvabilité des clients di dataset')
+    st.plotly_chart(fig)
+pie_chart(O.15)
 
 def get_predict_of_id():
 #Get the client ID from the user
