@@ -237,7 +237,7 @@ def var(data):
    # if(st.button('select_var3')):
        # var3 = st.text_input('var3')
         #st.write(var3)
-    return  if(st.button('select_var1')), var
+    return var
 var1 = var(data)
 var2 = var(data)
 var3 = var(data)
