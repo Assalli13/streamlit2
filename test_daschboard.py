@@ -17,15 +17,21 @@ file1.close()
 
 
 data = pd.read_csv("X_valid_sample_sm")
-data_test = pd.read_csv("X_valid_sample_sm")
+data_test = pd.read_csv("X_test_selected")
 #data['SK_ID_CURR'] = data['SK_ID_CURR'].astype(int)
 data = data.reset_index()
 data['SK_ID_CURR'] = data['index']
 data = data.drop('index', axis = 1)
 init = st.markdown("Réalisé par: Mohamed Assali")
 liste_id = data['SK_ID_CURR'].tolist()
+#--------------------------------------------------------------------------------------------------------------------------------------------#
 
-
+y_pred = model.predict(data_test.drop('Unnamed: 0', axis =1))
+prediction_test = model.predict_proba(data.drop('Unnamed: 0', axis =1))
+y_pred_data_test = (prediction > 0.1)
+y_pred_data_test = np.array(y_pred_test > 0) * 1
+data_test['TARGET'] = list(prediction[:, 1])
+#--------------------------------------------------------------------------------------------------------------------------------------------#
 y_pred = model.predict(data.drop('Unnamed: 0', axis =1))
 prediction = model.predict_proba(data.drop('Unnamed: 0', axis =1))
 y_pred_test = (prediction > 0.1)
@@ -213,7 +219,7 @@ def bivariate_analysis(data, var1, var2, var3):
     
     # Affichage du graphique avec Streamlit
     st.pyplot(fig)
-bivariate_analysis(data, 'EXT_SOURCE_1', 'EXT_SOURCE_2', 'AMT_CREDIT')
+bivariate_analysis(data_test, 'EXT_SOURCE_1', 'EXT_SOURCE_2', 'AMT_CREDIT')
 
 # Exemple d'utilisation avec Streamlit
 
