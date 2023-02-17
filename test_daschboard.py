@@ -54,7 +54,8 @@ def pie_chart(thres):
     df = pd.DataFrame(data=d)
     fig = px.pie(df,values='col1', names='col2', title=' Pourcentage de solvabilité des clients di dataset')
     st.plotly_chart(fig)
-pie_chart(O.15)
+    
+pie_chart(thres = O.15)
 
 def get_predict_of_id():
 #Get the client ID from the user
