@@ -223,24 +223,26 @@ def bivariate_analysis(data, var1, var2, var3):
    # st.pyplot(fig)
 #bivariate_analysis(data_test, 'EXT_SOURCE_1', 'EXT_SOURCE_2', 'AMT_CREDIT')
 
-def bivariate_analysis_barplot(data, var1, var2, var3):
+#def bivariate_analysis_barplot(data, var1, var2, var3):
     # Create three bar plots showing the average value of the target variable for each value of the independent variable
-    fig1 = px.bar(data, x=var1, y='TARGET', title=f"Average TARGET by {var1}", barmode='group')
-    fig2 = px.bar(data, x=var2, y='TARGET', title=f"Average TARGET by {var2}", barmode='group')
-    fig3 = px.bar(data, x=var3, y='TARGET', title=f"Average TARGET by {var3}", barmode='group')
+    #fig1 = px.bar(data, x=var1, y='TARGET', title=f"Average TARGET by {var1}", barmode='group')
+   # fig2 = px.bar(data, x=var2, y='TARGET', title=f"Average TARGET by {var2}", barmode='group')
+    #fig3 = px.bar(data, x=var3, y='TARGET', title=f"Average TARGET by {var3}", barmode='group')
 
     # Show the bar plots in Streamlit
     st.plotly_chart(fig1)
     st.plotly_chart(fig2)
     st.plotly_chart(fig3)
 st.header("Analyse bivariée")
-var1 = 'EXT_SOURCE_1'
-var2 = 'EXT_SOURCE_2'
-var3 = 'AMT_CREDIT'
+#var1 = 'EXT_SOURCE_1'
+#var2 = 'EXT_SOURCE_2'
+#var3 = 'AMT_CREDIT'
+
+var1 = st.selectbox('EXT_SOURCE_1', data_test.columns)
+var2 = st.selectbox('EXT_SOURCE_2', data_test.columns)
+var3 = st.selectbox('AMT_CREDIT', data_test.columns)
 bivariate_analysis(data_test, var1, var2, var3)
-bivariate_analysis_barplot(data_test, var1, var2, var3)
-#var1 = st.selectbox('EXT_SOURCE_1', data_test.columns)
-#var2 = st.selectbox('EXT_SOURCE_2', data_test.columns)
-#var3 = st.selectbox('AMT_CREDIT', data_test.columns)
+#bivariate_analysis_barplot(data_test, var1, var2, var3)
+#
 
 
