@@ -232,16 +232,6 @@ st.header("Analyse bivariée")
 def affiche_bivarié():
 # Demander à l'utilisateur de sélectionner une variable à partir d'une liste déroulante
     var = st.selectbox('Sélectionnez une variable', data_test.columns)
-
-# Vérifier si l'utilisateur a sélectionné une variable
-    if var:
-    # Afficher le nom de la variable sélectionnée
-        st.write(f"Vous avez sélectionné la variable : {var}")
-    
-    # Afficher l'analyse bivariée de la variable sélectionnée par rapport à TARGET
-       
-#else:
-    #st.write("Veuillez sélectionner une variable à partir de la liste déroulante.")
     return var
 affiche_bivarié()
 
