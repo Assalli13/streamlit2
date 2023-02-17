@@ -226,9 +226,10 @@ st.header("Analyse bivariée")
 #var1 = 'EXT_SOURCE_1'
 #var2 = 'EXT_SOURCE_2'
 #var3 = 'AMT_CREDIT'
+
+var1 = st.selectbox('var1', data.columns)
 if(st.button('select_var1')):
-    var1 = st.selectbox('var1', data.columns)
-bivariate_analysis(data, var1)
+    bivariate_analysis(data, var1)
 #st.header("Analyse bivariée")
 #def var(data):
    # if(st.button('select_var1')):
