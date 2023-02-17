@@ -230,7 +230,7 @@ def bivariate_analysis(data, var1):
 st.header("Analyse bivariée")
 def affiche_bivarié():
 # Demander à l'utilisateur de sélectionner une variable à partir d'une liste déroulante
-    var = st.selectbox('Sélectionnez une variable', data.columns)
+    var = st.selectbox('Sélectionnez une variable')
 
 # Vérifier si l'utilisateur a sélectionné une variable
     if var:
