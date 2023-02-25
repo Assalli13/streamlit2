@@ -77,7 +77,7 @@ if(st.button('Get info')):
     
         st.plotly_chart(fig)
     pie_chart(thres = 0.15)
-    client_id = st.number_input("Enter the client ID:")
+client_id = st.number_input("Enter the client ID:")
 if st.button('Get Score'):
     def get_predict_of_id():
     #Get the client ID from the user
