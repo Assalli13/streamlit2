@@ -222,7 +222,7 @@ if st.button('Get Score'):
        # st.plotly_chart(fig3)
 
         #return
-
+''''
     def bivariate_analysis(data, var1, var2, var3):
         # Afficher un bouton pour sélectionner la première variable
         #var1 = st.selectbox('Sélectionnez la première variable', data.columns)
@@ -243,7 +243,31 @@ if st.button('Get Score'):
         st.plotly_chart(fig2)
         st.plotly_chart(fig3)
         return 
-    bivariate_analysis(data_test, 'EXT_SOURCE_1', 'EXT_SOURCE_2', 'AMT_CREDIT')
+    bivariate_analysis(data_test, 'EXT_SOURCE_1', 'EXT_SOURCE_2', 'AMT_CREDIT') '''
+
+var_selection = st.multiselect('Sélectionnez les variables à analyser', data_test.columns)
+if(st.button('Choice_feature')):
+    
+    def bivariate_analysis(data):
+        # Afficher un bouton pour sélectionner les variables à analyser
+        
+        if len(var_selection) < 2:
+            st.warning("Sélectionnez au moins deux variables pour l'analyse bivariée.")
+            return
+        
+        # Création des graphiques de dispersion entre la variable TARGET et les variables sélectionnées
+        figs = []
+        for var in var_selection:
+            fig = px.scatter(data, x=var, y='TARGET', title=f"{var} vs. TARGET")
+            figs.append(fig)
+
+        # Affichage des graphiques avec Streamlit
+        for fig in figs:
+            st.plotly_chart(fig)
+            
+        return var_selection
+    bivariate_analysis(data_test)
+    
 
 
 
