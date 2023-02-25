@@ -79,171 +79,171 @@ if(st.button('Get info')):
     pie_chart(thres = 0.15)
  client_id = st.number_input("Enter the client ID:")
 if st.button('Get Score'):
-def get_predict_of_id():
-#Get the client ID from the user
-    #client_id = st.number_input("Enter the client ID:")
+    def get_predict_of_id():
+    #Get the client ID from the user
+        #client_id = st.number_input("Enter the client ID:")
 
-    #if st.button('Get Score'):
-    # data to send in the request body
-    id_client = {"SK_ID_CURR": client_id}
+        #if st.button('Get Score'):
+        # data to send in the request body
+        id_client = {"SK_ID_CURR": client_id}
 
-    # send the POST request
-    response = requests.post("https://flask-1.assalli13.repl.co/predictByClientId", json=id_client)
-        #response = requests.post("http://assali.pythonanywhere.com//predictByClientId", json=id_client)
+        # send the POST request
+        response = requests.post("https://flask-1.assalli13.repl.co/predictByClientId", json=id_client)
+            #response = requests.post("http://assali.pythonanywhere.com//predictByClientId", json=id_client)
 
-     # get the response data as a python object
-    response_data = json.loads(response.text)
-    response_data = response.json()
+         # get the response data as a python object
+        response_data = json.loads(response.text)
+        response_data = response.json()
 
-    return client_id, response_data
+        return client_id, response_data
 
 
-#Affichage du score cilent
-def gauge_chart(thres):
-    client_id, response_data = get_predict_of_id()
-    client_data = data.query("SK_ID_CURR == @client_id")
-    st.write(client_data)
-    if not client_data.empty:
-        #percent_sup_seuil = 100 * np.sum(response_data['prediction_proba']> thres) / client_data.shape[0]
-        st.write(response_data['prediction_proba'])
-        percent_sup_seuil = 100*response_data['prediction_proba']
-        if percent_sup_seuil<=100*thres:
-            st.write('Demande peut etre acceptée')
-        else:
-            st.write('Demande risqe detre refusée')
-        if not np.isnan(percent_sup_seuil):
-        # Define color mapping
-            if percent_sup_seuil <= 30:
-                 color = 'black'
-            elif percent_sup_seuil <= 60:
-                color = 'black'
+    #Affichage du score cilent
+    def gauge_chart(thres):
+        client_id, response_data = get_predict_of_id()
+        client_data = data.query("SK_ID_CURR == @client_id")
+        st.write(client_data)
+        if not client_data.empty:
+            #percent_sup_seuil = 100 * np.sum(response_data['prediction_proba']> thres) / client_data.shape[0]
+            st.write(response_data['prediction_proba'])
+            percent_sup_seuil = 100*response_data['prediction_proba']
+            if percent_sup_seuil<=100*thres:
+                st.write('Demande peut etre acceptée')
             else:
-                color = 'black'
-        
-            fig = go.Figure(go.Indicator(
-                mode = "gauge+number",
-                value = response_data['prediction_proba']*100,
-                title = {"text": "Pourcentage de solvabilité des clients dans dataset"},
-                 domain = {'x': [0, 1], 'y': [0, 1]},
-                gauge = {'axis': {'range': [None, 100]},
-                        'bar': {'color': color},
-                        'steps': [
-                            {'range': [20, 100],'color': 'red'},
-                            {'range': [10, 20], 'color': 'orange'},
-                            {'range': [0, 10], 'color': 'green'}
-                                                            ],
-                                    'threshold': {
-                          'line': {
-                    'color': "black",
-                     'width': 2
-                              },
-                     'thickness': 0.75,
-                                'value': thres
-                                             }
-                                              }))
-            st.plotly_chart(fig)
-            feature_importancess = json.loads(response_data["feature_importances"])
-            feature_importancess_df = pd.DataFrame(feature_importancess)
-            #st.write(feature_importancess_df)
-            top_4_features = feature_importancess_df.sort_values(by='importance', ascending=False)[:4]
-            #st.bar_chart(top_4_features, x=top_4_features['feature'], y=top_4_features['importance'])
-            fig1, ax = plt.subplots(figsize=(10, 4))
-            colors = ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728']
-            ax.barh(top_4_features['feature'], top_4_features['importance'], color=colors)
-            ax.set_xlabel('Feature')
-            ax.set_title('Top 4 most important features')
-            ax.invert_yaxis()
+                st.write('Demande risqe detre refusée')
+            if not np.isnan(percent_sup_seuil):
+            # Define color mapping
+                if percent_sup_seuil <= 30:
+                     color = 'black'
+                elif percent_sup_seuil <= 60:
+                    color = 'black'
+                else:
+                    color = 'black'
 
-            # Add grid lines to make the chart more readable
-            ax.grid(True, which='both', axis='x', linestyle='--', color='gray')
+                fig = go.Figure(go.Indicator(
+                    mode = "gauge+number",
+                    value = response_data['prediction_proba']*100,
+                    title = {"text": "Pourcentage de solvabilité des clients dans dataset"},
+                     domain = {'x': [0, 1], 'y': [0, 1]},
+                    gauge = {'axis': {'range': [None, 100]},
+                            'bar': {'color': color},
+                            'steps': [
+                                {'range': [20, 100],'color': 'red'},
+                                {'range': [10, 20], 'color': 'orange'},
+                                {'range': [0, 10], 'color': 'green'}
+                                                                ],
+                                        'threshold': {
+                              'line': {
+                        'color': "black",
+                         'width': 2
+                                  },
+                         'thickness': 0.75,
+                                    'value': thres
+                                                 }
+                                                  }))
+                st.plotly_chart(fig)
+                feature_importancess = json.loads(response_data["feature_importances"])
+                feature_importancess_df = pd.DataFrame(feature_importancess)
+                #st.write(feature_importancess_df)
+                top_4_features = feature_importancess_df.sort_values(by='importance', ascending=False)[:4]
+                #st.bar_chart(top_4_features, x=top_4_features['feature'], y=top_4_features['importance'])
+                fig1, ax = plt.subplots(figsize=(10, 4))
+                colors = ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728']
+                ax.barh(top_4_features['feature'], top_4_features['importance'], color=colors)
+                ax.set_xlabel('Feature')
+                ax.set_title('Top 4 most important features')
+                ax.invert_yaxis()
 
-            st.pyplot(fig1, ax)
-            #st.write(top_4_features)
-            st.write(top_4_features)
+                # Add grid lines to make the chart more readable
+                ax.grid(True, which='both', axis='x', linestyle='--', color='gray')
+
+                st.pyplot(fig1, ax)
+                #st.write(top_4_features)
+                st.write(top_4_features)
+            else:
+                st.warning("No data available for this client id or the data is not valid")
         else:
             st.warning("No data available for this client id or the data is not valid")
-    else:
-        st.warning("No data available for this client id or the data is not valid")
-gauge_chart(thres = 0.15)
+    gauge_chart(thres = 0.15)
 
-def show_overview():
-    st.title("Risque")
-    risque_threshold = st.slider(label = 'Seuil de risque', min_value = 0.0,
-                    max_value = 1.0 ,
-                     value = 0.15,
-                     step = 0.1)
-    st.write(0.15)
-show_overview()
-st.write(data)
- 
-def gauge_chart(thres):
-    percent_sup_seuil = 100*(data['TARGET'] > thres).sum()/data.shape[0]
-    fig = go.Figure(go.Indicator(
-        mode = "gauge+number",
-        value = percent_sup_seuil,
-        title = {"text": "Pourcentage de solvabil des clients di dataset"},
-        domain = {'x': [0, 1], 'y': [0, 1]},
-        gauge = {'axis': {'range': [None, 100]},
-            'bar': {'color': "red"},
-            'steps' : [
-                {'range': [0, 50], 'color': 'lightgray'},
-                {'range': [50, 75], 'color': 'gray'},
-                {'range': [75, 100], 'color': 'darkgray'}
-            ],
-            'threshold' : {'line': {'color': "black", 'width': 2}, 'thickness': 0.75, 'value': thres}}))
-    st.plotly_chart(fig) 
-gauge_chart(thres = 0.15)
+    def show_overview():
+        st.title("Risque")
+        risque_threshold = st.slider(label = 'Seuil de risque', min_value = 0.0,
+                        max_value = 1.0 ,
+                         value = 0.15,
+                         step = 0.1)
+        st.write(0.15)
+    show_overview()
+    st.write(data)
 
-def hist_graph ():
-    bins = st.slider("Number of bins",5,50,10)
-    hist_values, bin_edges = np.histogram(data['EXT_SOURCE_1'], bins=bins)
-    bin_edges = bin_edges[:-1] # to match the number of values
-    hist_df = pd.DataFrame({"bin_edges": bin_edges,"hist_values": hist_values})
-    st.bar_chart(hist_df)
-    df = pd.DataFrame(data[:200],columns = ['EXT_SOURCE_1','AMT_CREDIT'])
-    fig, ax = plt.subplots(1, 2)
-    df['EXT_SOURCE_1'].hist(ax=ax[0],bins=bins)
-    ax[0].set_title('EXT_SOURCE_1')
-    df['AMT_CREDIT'].hist(ax=ax[1],bins=bins)
-    ax[1].set_title('AMT_CREDIT')
-    st.pyplot(fig)
-hist_graph()
+    def gauge_chart(thres):
+        percent_sup_seuil = 100*(data['TARGET'] > thres).sum()/data.shape[0]
+        fig = go.Figure(go.Indicator(
+            mode = "gauge+number",
+            value = percent_sup_seuil,
+            title = {"text": "Pourcentage de solvabil des clients di dataset"},
+            domain = {'x': [0, 1], 'y': [0, 1]},
+            gauge = {'axis': {'range': [None, 100]},
+                'bar': {'color': "red"},
+                'steps' : [
+                    {'range': [0, 50], 'color': 'lightgray'},
+                    {'range': [50, 75], 'color': 'gray'},
+                    {'range': [75, 100], 'color': 'darkgray'}
+                ],
+                'threshold' : {'line': {'color': "black", 'width': 2}, 'thickness': 0.75, 'value': thres}}))
+        st.plotly_chart(fig) 
+    gauge_chart(thres = 0.15)
+
+    def hist_graph ():
+        bins = st.slider("Number of bins",5,50,10)
+        hist_values, bin_edges = np.histogram(data['EXT_SOURCE_1'], bins=bins)
+        bin_edges = bin_edges[:-1] # to match the number of values
+        hist_df = pd.DataFrame({"bin_edges": bin_edges,"hist_values": hist_values})
+        st.bar_chart(hist_df)
+        df = pd.DataFrame(data[:200],columns = ['EXT_SOURCE_1','AMT_CREDIT'])
+        fig, ax = plt.subplots(1, 2)
+        df['EXT_SOURCE_1'].hist(ax=ax[0],bins=bins)
+        ax[0].set_title('EXT_SOURCE_1')
+        df['AMT_CREDIT'].hist(ax=ax[1],bins=bins)
+        ax[1].set_title('AMT_CREDIT')
+        st.pyplot(fig)
+    hist_graph()
 
 
-#def bivariate_analysis(data, var1):
-    # Création de trois graphiques de dispersion entre la variable TARGET et les trois autres variables
-    #fig1 = px.scatter(data, x=var1, y='TARGET', title=f"{var1} vs. TARGET")
-   # fig2 = px.scatter(data, x=var2, y='TARGET', title=f"{var2} vs. TARGET")
-    #fig3 = px.scatter(data, x=var3, y='TARGET', title=f"{var3} vs. TARGET")
-    
-    # Affichage des graphiques avec Streamlit
-    #st.plotly_chart(fig1)
-    #st.plotly_chart(fig2)
-   # st.plotly_chart(fig3)
-    
-    #return
+    #def bivariate_analysis(data, var1):
+        # Création de trois graphiques de dispersion entre la variable TARGET et les trois autres variables
+        #fig1 = px.scatter(data, x=var1, y='TARGET', title=f"{var1} vs. TARGET")
+       # fig2 = px.scatter(data, x=var2, y='TARGET', title=f"{var2} vs. TARGET")
+        #fig3 = px.scatter(data, x=var3, y='TARGET', title=f"{var3} vs. TARGET")
 
-def bivariate_analysis(data, var1, var2, var3):
-    # Afficher un bouton pour sélectionner la première variable
-    #var1 = st.selectbox('Sélectionnez la première variable', data.columns)
+        # Affichage des graphiques avec Streamlit
+        #st.plotly_chart(fig1)
+        #st.plotly_chart(fig2)
+       # st.plotly_chart(fig3)
 
-    # Afficher un bouton pour sélectionner la deuxième variable
-    #var2 = st.selectbox('Sélectionnez la deuxième variable', data.columns)
+        #return
 
-    # Afficher un bouton pour sélectionner la troisième variable
-    #var3 = st.selectbox('Sélectionnez la troisième variable', data.columns)
+    def bivariate_analysis(data, var1, var2, var3):
+        # Afficher un bouton pour sélectionner la première variable
+        #var1 = st.selectbox('Sélectionnez la première variable', data.columns)
 
-    # Création de trois graphiques de dispersion entre la variable TARGET et les trois autres variables
-    fig1 = px.scatter(data, x=var1, y='TARGET', title=f"{var1} vs. TARGET")
-    fig2 = px.scatter(data, x=var2, y='TARGET', title=f"{var2} vs. TARGET")
-    fig3 = px.scatter(data, x=var3, y='TARGET', title=f"{var3} vs. TARGET")
+        # Afficher un bouton pour sélectionner la deuxième variable
+        #var2 = st.selectbox('Sélectionnez la deuxième variable', data.columns)
 
-    # Affichage des graphiques avec Streamlit
-    st.plotly_chart(fig1)
-    st.plotly_chart(fig2)
-    st.plotly_chart(fig3)
-    return 
-bivariate_analysis(data_test, 'EXT_SOURCE_1', 'EXT_SOURCE_2', 'AMT_CREDIT')
+        # Afficher un bouton pour sélectionner la troisième variable
+        #var3 = st.selectbox('Sélectionnez la troisième variable', data.columns)
+
+        # Création de trois graphiques de dispersion entre la variable TARGET et les trois autres variables
+        fig1 = px.scatter(data, x=var1, y='TARGET', title=f"{var1} vs. TARGET")
+        fig2 = px.scatter(data, x=var2, y='TARGET', title=f"{var2} vs. TARGET")
+        fig3 = px.scatter(data, x=var3, y='TARGET', title=f"{var3} vs. TARGET")
+
+        # Affichage des graphiques avec Streamlit
+        st.plotly_chart(fig1)
+        st.plotly_chart(fig2)
+        st.plotly_chart(fig3)
+        return 
+    bivariate_analysis(data_test, 'EXT_SOURCE_1', 'EXT_SOURCE_2', 'AMT_CREDIT')
 
 
 
