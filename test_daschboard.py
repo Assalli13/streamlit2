@@ -77,22 +77,23 @@ if(st.button('Get info')):
     
         st.plotly_chart(fig)
     pie_chart(thres = 0.15)
-
+ client_id = st.number_input("Enter the client ID:")
+if st.button('Get Score'):
 def get_predict_of_id():
 #Get the client ID from the user
-    client_id = st.number_input("Enter the client ID:")
+    #client_id = st.number_input("Enter the client ID:")
 
-    if st.button('Get Score'):
+    #if st.button('Get Score'):
     # data to send in the request body
-        id_client = {"SK_ID_CURR": client_id}
+    id_client = {"SK_ID_CURR": client_id}
 
     # send the POST request
-        response = requests.post("https://flask-1.assalli13.repl.co/predictByClientId", json=id_client)
+    response = requests.post("https://flask-1.assalli13.repl.co/predictByClientId", json=id_client)
         #response = requests.post("http://assali.pythonanywhere.com//predictByClientId", json=id_client)
 
      # get the response data as a python object
-        response_data = json.loads(response.text)
-        response_data = response.json()
+    response_data = json.loads(response.text)
+    response_data = response.json()
 
     return client_id, response_data
 
