@@ -88,7 +88,7 @@ def get_predict_of_id():
 
     # send the POST request
         #response = requests.post("https://flask-1.assalli13.repl.co/predictByClientId", json=id_client)
-        response = requests.post("http://assali.pythonanywhere.com//predictByClientId", json=id_client)
+        response = requests.post("http://assali.pythonanywhere.com/predictByClientId", json=id_client)
 
      # get the response data as a python object
         response_data = json.loads(response.text)
