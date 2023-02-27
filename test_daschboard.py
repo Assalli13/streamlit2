@@ -209,41 +209,27 @@ if st.button('Get Score'):
         st.pyplot(fig)
     hist_graph()
 
+if(st.button('bivariate analysis')):
+    def bivariate_analysis(data):
+    # Afficher un bouton pour sélectionner les variables à analyser
+    var_selection = st.multiselect('Sélectionnez les variables à analyser', data.columns)
+    
+    if len(var_selection) < 2:
+        st.warning("Sélectionnez au moins deux variables pour l'analyse bivariée.")
+        return
+    
+    # Création des graphiques de dispersion entre la variable TARGET et les variables sélectionnées
+    figs = []
+    for var in var_selection:
+        fig = px.scatter(data, x=var, y='TARGET', title=f"{var} vs. TARGET")
+        figs.append(fig)
 
-    #def bivariate_analysis(data, var1):
-        # Création de trois graphiques de dispersion entre la variable TARGET et les trois autres variables
-        #fig1 = px.scatter(data, x=var1, y='TARGET', title=f"{var1} vs. TARGET")
-       # fig2 = px.scatter(data, x=var2, y='TARGET', title=f"{var2} vs. TARGET")
-        #fig3 = px.scatter(data, x=var3, y='TARGET', title=f"{var3} vs. TARGET")
-
-        # Affichage des graphiques avec Streamlit
-        #st.plotly_chart(fig1)
-        #st.plotly_chart(fig2)
-       # st.plotly_chart(fig3)
-
-        #return
-
-    def bivariate_analysis(data, var1, var2, var3):
-        # Afficher un bouton pour sélectionner la première variable
-        #var1 = st.selectbox('Sélectionnez la première variable', data.columns)
-
-        # Afficher un bouton pour sélectionner la deuxième variable
-        #var2 = st.selectbox('Sélectionnez la deuxième variable', data.columns)
-
-        # Afficher un bouton pour sélectionner la troisième variable
-        #var3 = st.selectbox('Sélectionnez la troisième variable', data.columns)
-
-        # Création de trois graphiques de dispersion entre la variable TARGET et les trois autres variables
-        fig1 = px.scatter(data, x=var1, y='TARGET', title=f"{var1} vs. TARGET")
-        fig2 = px.scatter(data, x=var2, y='TARGET', title=f"{var2} vs. TARGET")
-        fig3 = px.scatter(data, x=var3, y='TARGET', title=f"{var3} vs. TARGET")
-
-        # Affichage des graphiques avec Streamlit
-        st.plotly_chart(fig1)
-        st.plotly_chart(fig2)
-        st.plotly_chart(fig3)
-        return 
-    bivariate_analysis(data_test, 'EXT_SOURCE_1', 'EXT_SOURCE_2', 'AMT_CREDIT')
+    # Affichage des graphiques avec Streamlit
+    for fig in figs:
+        st.plotly_chart(fig)
+        
+    return
+bivariate_analysis(data_test)
 
 
 
