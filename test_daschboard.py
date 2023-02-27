@@ -77,23 +77,33 @@ if(st.button('Get info')):
     
         st.plotly_chart(fig)
     pie_chart(thres = 0.15)
-client_id = st.number_input("Enter the client ID:")
+    
+client_id = st.number_input("Enter the client ID:")   
 if st.button('Get Score'):
     def get_predict_of_id():
     #Get the client ID from the user
-        #client_id = st.number_input("Enter the client ID:")
+        
 
-        #if st.button('Get Score'):
+        
         # data to send in the request body
         id_client = {"SK_ID_CURR": client_id}
 
+            #if id_client:
+
         # send the POST request
         response = requests.post("https://flask-1.assalli13.repl.co/predictByClientId", json=id_client)
-            #response = requests.post("http://assali.pythonanywhere.com/application/predictByClientId", json=id_client)
+        #response = requests.post("http://localhost:5000/predictByClientId", json=id_client)
+
+        if response:
+            
+            #response = requests.post("https://flask-1.assalli13.repl.co/predictByClientId", json=id_client)
+            #response = requests.post("http://assali.pythonanywhere.com//predictByClientId", json=id_client)
 
          # get the response data as a python object
-        response_data = json.loads(response.text)
-        response_data = response.json()
+            response_data = json.loads(response.text)
+            response_data = response.json()
+        else:
+             print('NO')
 
         return client_id, response_data
 
@@ -119,7 +129,7 @@ if st.button('Get Score'):
                     color = 'black'
                 else:
                     color = 'black'
-
+            
                 fig = go.Figure(go.Indicator(
                     mode = "gauge+number",
                     value = response_data['prediction_proba']*100,
@@ -175,7 +185,7 @@ if st.button('Get Score'):
         st.write(0.15)
     show_overview()
     st.write(data)
-
+     
     def gauge_chart(thres):
         percent_sup_seuil = 100*(data['TARGET'] > thres).sum()/data.shape[0]
         fig = go.Figure(go.Indicator(
@@ -209,28 +219,33 @@ if st.button('Get Score'):
         st.pyplot(fig)
     hist_graph()
 
-if(st.button('bivariate analysis')):
+var_selection = st.multiselect('Sélectionnez les variables à analyser', data_test.columns)
+if(st.button('Choice_feature')):
+    
     def bivariate_analysis(data):
-    # Afficher un bouton pour sélectionner les variables à analyser
-    var_selection = st.multiselect('Sélectionnez les variables à analyser', data.columns)
-    
-    if len(var_selection) < 2:
-        st.warning("Sélectionnez au moins deux variables pour l'analyse bivariée.")
-        return
-    
-    # Création des graphiques de dispersion entre la variable TARGET et les variables sélectionnées
-    figs = []
-    for var in var_selection:
-        fig = px.scatter(data, x=var, y='TARGET', title=f"{var} vs. TARGET")
-        figs.append(fig)
-
-    # Affichage des graphiques avec Streamlit
-    for fig in figs:
-        st.plotly_chart(fig)
+        # Afficher un bouton pour sélectionner les variables à analyser
         
-    return
-bivariate_analysis(data_test)
+        if len(var_selection) < 2:
+            st.warning("Sélectionnez au moins deux variables pour l'analyse bivariée.")
+            return
+        
+        # Création des graphiques de dispersion entre la variable TARGET et les variables sélectionnées
+        figs = []
+        for var in var_selection:
+            fig = px.scatter(data, x=var, y='TARGET', title=f"{var} vs. TARGET")
+            figs.append(fig)
+
+        # Affichage des graphiques avec Streamlit
+        for fig in figs:
+            st.plotly_chart(fig)
+            
+        return var_selection
+    bivariate_analysis(data_test)
 
 
+
+        
+
+     
 
 
